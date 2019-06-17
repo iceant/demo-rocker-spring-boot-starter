@@ -1,0 +1,3 @@
+[submodule "rocker-spring-boot-starter"]
+	path = rocker-spring-boot-starter
+	url = https://github.com/iceant/rocker-spring-boot-starter

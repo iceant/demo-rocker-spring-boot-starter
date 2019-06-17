@@ -1,0 +1,36 @@
+@import java.util.*
+@import rocker.*
+
+@args()
+
+@header => {
+<title>Login</title>
+}
+
+@script => {
+<script></script>
+}
+
+@$r.template("layout/layout", header, script)->{
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form method="POST" action='@$r.path("/login")' class="form-signin">
+                <h2 class="form-heading">Log in</h2>
+
+                <div class='form-group @if($r.paramString("error")!=null){"has-error":""}'>
+                    <input type="hidden" name="@$r.csrfTokenParameterName()" value="@$r.csrf()">
+
+                    <input name="username" type="text" class="form-control" placeholder="Username" autofocus="true" value="user"/>
+                    <input name="password" type="password" class="form-control" placeholder="Password" value="password"/>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">Log In</button>
+                    <h4 class="text-center"><a href='@$r.path("/registration")'>Create an account</a></h4>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+}
