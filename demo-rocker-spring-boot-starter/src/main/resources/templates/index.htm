@@ -16,7 +16,6 @@
 @$r.template("layout/layout", header, script)->{
 <div class="container">
     <h1>@$r.msg("msg.hello", $r.request().getRemoteUser())</h1>
-abc
     <form action='@$r.path("/logout")' method="post">
         <input type="hidden" name="@$r.csrfTokenParameterName()" value="@$r.csrf()">
         <input type="submit" class="btn btn-primary btn-block" value="Sign Out"/>
