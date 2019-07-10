@@ -9,14 +9,15 @@
 
 @script => {
 <script>
-    alert("I'm Index page!");
-
-    loadWebFragment('@$r.path("/fragment/hello")', function(data){
-        console.log(arguments);
+    V.loadWebFragment('@$r.path("/fragment/hello")', function(viewContext){
         var view = this;
-        if(data && data.template){
-            $('#fragment').html(data.template);
-        }
+        view.bindTo($('#fragment'));
+        view.display();
+    });
+
+    V.loadWebFragment('@$r.path("/fragment/hello")', function(viewContext){
+        var view = this;
+        view.bindTo($('#fragment2'));
         view.display();
     });
 </script>
@@ -31,5 +32,6 @@
     </form>
 
     <div id="fragment"></div>
+    <div id="fragment2"></div>
 </div>
 }
