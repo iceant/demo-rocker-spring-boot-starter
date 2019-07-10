@@ -6,12 +6,10 @@
             var msg = this.msg('@rocker.$r.msg("msg.clicked_n_times")', ++this.number);
             this.$('#number').html(this.name+' => '+msg);
         },
-        display: function(){
-            var view = this;
-        },
         bindEvent:function(){
             var view = this;
-            view.$('[id$="ClickMe"]').on('click', function(){
+            view.$('#btnClickMe').on('click', function(e){
+                e.preventDefault();
                 view.trigger('btnClickMe.click', this);
             });
         },

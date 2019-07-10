@@ -289,21 +289,19 @@
                         View.fn.set(prop, item);
                     }
                 }
-                if(Type.isFunction(View.fn.display)){
-                    View.fn.display = View.fn.display.before(function(){
-                        View.fn.__display.apply(this, arguments);
-                    });
-                    if(Type.isFunction(View.fn.bindEvent)){
-                        View.fn.display = View.fn.display.after(function(){
+                View.fn.display = View.fn.display||View.fn.__display;
+                if(!View.__bindEventDone__){
+                    View.fn.display = View.fn.display.after(function(){
+                        if(Type.isFunction(View.fn.bindEvent)){
                             View.fn.bindEvent.apply(this, arguments);
-                        });
-                        if(Type.isFunction(View.fn.handleEvent)){
-                            View.fn.bindEvent = View.fn.bindEvent.after(function(){
-                                View.fn.handleEvent.apply(this, arguments);
-                            });
                         }
-                    }
+                        if(Type.isFunction(View.fn.handleEvent)){
+                            View.fn.handleEvent.apply(this, arguments);
+                        }
+                    });
+                    View.__bindEventDone__ = true;
                 }
+
                 return View;
             },
             loadWebFragment:loadWebFragment
