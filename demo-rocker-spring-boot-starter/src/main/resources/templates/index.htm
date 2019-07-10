@@ -10,6 +10,15 @@
 @script => {
 <script>
     alert("I'm Index page!");
+
+    loadWebFragment('@$r.path("/fragment/hello")', function(data){
+        console.log(arguments);
+        var view = this;
+        if(data && data.template){
+            $('#fragment').html(data.template);
+        }
+        view.display();
+    });
 </script>
 }
 
@@ -20,5 +29,7 @@
         <input type="hidden" name="@$r.csrfTokenParameterName()" value="@$r.csrf()">
         <input type="submit" class="btn btn-primary btn-block" value="Sign Out"/>
     </form>
+
+    <div id="fragment"></div>
 </div>
 }
